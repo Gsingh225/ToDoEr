@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <title>Welcome {{user}}</title>
+
+    <style>
+
+    :root {
+
+      --primary-color: #1E90FF;
+
+      --secondary-color: #FFFFFF;
+
+    }
+
+      body {
+
+      background-color: var(--secondary-color);
+
+      font-family: Arial, sans-serif;
+
+      margin: 0;
+
+      background-color: #f5f5f5;
+
+      /*background-image: linear-gradient(180deg, #f5f5f5 0%, #dcdcdc 100%);*/
+
+    }
+
+    #plus-button {
+
+      position: fixed;
+
+      bottom: 20px;
+
+      right: 20px;
+
+      width: 50px;
+
+      height: 50px;
+
+      background-color: var(--primary-color);
+
+      color: var(--secondary-color);
+
+      border-radius: 50%;
+
+      text-align: center;
+
+      line-height: 50px;
+
+      font-size: 30px;
+
+      cursor: pointer;
+
+    }
+
+    #hide-form {
+
+      text-align: center;
+
+      border: solid 2px black;
+
+      border-radius: 20px;
+
+      position: fixed;
+
+      top: 50%;
+
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 300px;
+
+      height: 200px;
+
+      padding: 5px;
+
+      display: none;
+
+      background-color: var(--primary-color);
+
+      color: var(--secondary-color);
+
+    }
+
+    .but {
+
+      border: none;
+
+      width: 80px;
+
+      height: 40px;
+
+      border-radius: 20px;
+
+      color: var(--secondary-color);
+
+      background-color: var(--primary-color);
+
+      margin: 5px;
+
+      cursor: pointer;
+
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .but:hover {
+
+      background-color: var(--secondary-color);
+
+      color: var(--primary-color);
+
+      transition: 0.2s;
+
+    }
+
+    .centerMe{
+
+      text-align: center;
+
+    }
+
+    .card{
+
+      border: solid 1px black;
+
+    }
+
+    .card {
+
+      background-color: #FFFFFF;
+
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+      border-radius: 5px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 20px;
+
+      margin-bottom: 20px;
+
+    }
+
+    .task {
+
+      font-size: 24px;
+
+      font-weight: bold;
+
+      margin-right: 20px;
+
+    }
+
+    .checkbox input[type="checkbox"] {
+
+      display: none;
+
+    }
+
+    .checkbox input[type="checkbox"] + label {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        width: 40px;
+
+        height: 40px;
+
+        background-color: #F7F7F7;
+
+        border: 2px solid #CCCCCC;
+
+        border-radius: 5px;
+
+        cursor: pointer;
+
+    }
+
+    .checkbox input[type="checkbox"]:checked + label {
+
+      background-color: #2D68FF;
+
+      border-color: #2D68FF;
+
+    }
+
+    .checkbox input[type="checkbox"]:checked + label::before {
+
+      content: "✔";
+
+      font-size: 24px;
+
+      color: #FFFFFF;
+
+    }
+
+    .timer-container {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      margin-top: 50px;
+
+    }
+
+    .timer {
+
+      font-size: 3rem;
+
+      margin-bottom: 30px;
+
+    }
+
+    .buttons {
+
+      display: flex;
+
+    }
+
+    button {
+
+      margin: 0 10px;
+
+      padding: 10px;
+
+      background-color: #007bff;
+
+      color: #fff;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background-color: #0062cc;
+
+    }
+
+ </style>
+
+  </head>
+
+  <body>
+
+    <h1 class="centerMe">Welcome {{user}}</h1>
+
+    <h3 class="centerMe">Tasks</h3>
+
+    <div class="card">
+
+      <div class="task">
+
+        {{task}}
+
+      </div>
+
+      <div class="checkbox">
+
+        <input type="checkbox" id="task-done" name="task-done">
+
+        <label for="task-done">Done</label>
+
+      </div>
+
+    </div>
+
+  <div id="hide-form">
+
+    <form>
+
+      <h4>New Task</h4>
+
+      <input type="text" placeholder="Title" id="titleR" name="titleR"><br><br>
+
+      <button type="button" onclick="fini()" class="but">Create</button>
+
+      <button type="button" class="but" onclick="closeForm()">Close</button>
+
+      <button class="but" type="button" onclick="clearerz()">Clear</button>
+
+    </form>
+
+  </div>
+
+    <div id="plus-button" onclick="openForm()">+</div>
+
+        <div class="timer-container">
+
+      <div class="timer">25:00</div>
+
+      <div class="buttons">
+
+        <button id="start-btn" data-time="1500">Start</button>
+
+        <button id="pause-btn">Pause</button>
+
+        <button id="reset-btn">Reset</button>
+
+      </div>
+
+    </div>
+
+  </body>
+
+  <script>
+
+    function closeForm() {
+
+    var form = document.getElementById('hide-form');
+
+    form.style.display = 'none';
+
+  }
+
+  function openForm() {
+
+    var form = document.getElementById("hide-form");
+
+    form.style.display = "block";
+
+  }
+
+  const timerDisplay = document.querySelector('.timer');
+
+      const startBtn = document.querySelector('#start-btn');
+
+      const pauseBtn = document.querySelector('#pause-btn');
+
+      const resetBtn = document.querySelector('#reset-btn');
+
+      let countdown;
+
+      let isPaused = false;
+
+      function timer(seconds) {
+
+        const now = Date.now();
+
+        const then = now + seconds * 1000;
+
+        displayTimeLeft(seconds);
+
+        countdown = setInterval(() => {
+
+          const secondsLeft = Math.round((then - Date.now()) / 1000);
+
+          if (secondsLeft < 0) {
+
+            clearInterval(countdown);
+
+            return;
+
+          }
+
+          if (!isPaused) {
+
+            displayTimeLeft(secondsLeft);
+
+          }
+
+        }, 1000);
+
+      }
+
+      function displayTimeLeft(seconds) {
+
+        const minutes = Math.floor(seconds / 60);
+
+        const remainderSeconds = seconds % 60;
+
+        const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+
+        timerDisplay.textContent = display;
+
+        document.title = display;
+
+      }
+
+      function startTimer() {
+
+        const seconds = this.dataset.time;
+
+        timer(seconds);
+
+      }
+
+      function pauseTimer() {
+
+        isPaused = true;
+
+      }
+
+      function resumeTimer() {
+
+        isPaused = false;
+
+      }
+
+      function resetTimer() {
+
+        clearInterval(countdown);
+
+        timerDisplay.textContent = '25:00';
+
+        document.title = 'Pomodoro Timer';
+
+        isPaused = false;
+
+      }
+
+      startBtn.addEventListener('click', startTimer);
+
+      pauseBtn.addEventListener('click', pauseTimer);
+
+      timerDisplay.addEventListener('click', resumeTimer);
+
+      resetBtn.addEventListener('click', resetTimer);
+
+  </script>
+
+</html>

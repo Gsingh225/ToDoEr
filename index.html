@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ToDoEr</title>
+    <meta property="og:title" content="ToDoEr" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance:button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <style>
+       body::-webkit-scrollbar {
+         width: 0.5em;
+         z-index: 100;
+         background-color:transparent;
+       }
+
+
+      body::-webkit-scrollbar-thumb {
+         background-color:white;
+         box-shadow:0 -100vh 0 100vh #5128f5; 
+       }
+    </style>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+  </head>
+  <body>
+    <div>
+      <link href="{{url_for('static', filename='home.css')}}" rel="stylesheet" />
+      <script
+        type="text/javascript"
+        src="https://unpkg.com/dangerous-html@0.1.12/dist/default/lib.umd.js"
+      ></script>
+
+      <div class="home-container">
+        <section class="home-hero">
+          <div class="home-menu">
+            <div id="mobile-menu" class="home-mobile-navigation">
+              <img
+                alt="pastedImage"
+                src="{{url_for('static', filename='pastedimage-no9b-1500h.png')}}"
+                class="home-logo"
+              />
+              <div class="home-links">
+                <span class="Link" href="{{url_for('register')}}">Solutions</span>
+                <span class="Link" href="{{url_for('register')}}">How it works</span>
+                <span class="Link" href="{{url_for('register')}}">Prices</span>
+              </div>
+              <div id="close-mobile-menu" class="home-close-mobile-menu">
+                <svg viewBox="0 0 804.5714285714286 1024" class="home-icon">
+                  <path
+                    d="M741.714 755.429c0 14.286-5.714 28.571-16 38.857l-77.714 77.714c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-168-168-168 168c-10.286 10.286-24.571 16-38.857 16s-28.571-5.714-38.857-16l-77.714-77.714c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l168-168-168-168c-10.286-10.286-16-24.571-16-38.857s5.714-28.571 16-38.857l77.714-77.714c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l168 168 168-168c10.286-10.286 24.571-16 38.857-16s28.571 5.714 38.857 16l77.714 77.714c10.286 10.286 16 24.571 16 38.857s-5.714 28.571-16 38.857l-168 168 168 168c10.286 10.286 16 24.571 16 38.857z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="home-desktop-navigation">
+              <nav class="centered-centered">
+                <div class="centered-left">
+                  <div class="centered-links">
+                    <span class="Link" href="{{url_for('register')}}"><span>Solutions</span></span>
+                    <span class="Link" href="{{url_for('register')}}"><span>How it works</span></span>
+                    <span class="Link" href="{{url_for('register')}}"><span>Prices</span></span>
+                  </div>
+                </div>
+                <div class="centered-right">
+                  <span class="centered-sign-in Link">
+                    <span onclick="window.location='/login'">Sign in</span>
+                  </span>
+                  <div class="centered-get-started">
+                    <span class="centered-text3" onclick="window.location='/register'"><span>Get started</span></span>
+                  </div>
+                  <div id="open-mobile-menu" class="centered-burger-menu">
+                    <img
+                      alt="pastedImage"
+                      src="{{url_for('static', filename='pastedimage-yxbd.svg')}}"
+                      class="centered-mobile-menu-button"
+                    />
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div>
+              <dangerous-html
+                html="<script>
+/*
+Mobile menu - Code Embed
+*/
+
+// Mobile menu
+const mobileMenu = document.querySelector('#mobile-menu')
+
+// Buttons
+const closeButton = document.querySelector('#close-mobile-menu')
+const openButton = document.querySelector('#open-mobile-menu')
+
+// On openButton click, set the mobileMenu position left to -100vw
+openButton.addEventListener('click', function() {
+    mobileMenu.style.transform = 'translateX(0%)'
+})
+
+// On closeButton click, set the mobileMenu position to 0vw
+closeButton.addEventListener('click', function() {
+    mobileMenu.style.transform = 'translateX(100%)'
+})
+</script>"
+              ></dangerous-html>
+            </div>
+          </div>
+          <header class="home-header">
+            <h1 class="home-text03">Take Control of Your Life</h1>
+            <p class="home-text04">
+              With ToDoER you'll have so much time, you won't know what to do!
+            </p>
+            <div class="home-get-started">
+              <span class="home-text05" onclick="window.location='/register'">Get started</span>
+            </div>
+          </header>
+          <div class="home-dashboard-preview">
+            <div class="home-outline"></div>
+          </div>
+        </section>
+        <section class="home-features">
+          <div class="home-title">
+            <span class="home-text06">
+              <span>Let's grow your free time</span>
+              <br />
+            </span>
+            <span class="home-text09">
+              You Know You Wanna. Here's a few more reasons.
+            </span>
+          </div>
+          <div class="home-cards">
+            <div class="home-container1">
+              <div class="card">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='pastedimage-fii6m-200h.png')}}"
+                  class="home-icon02"
+                />
+                <span class="home-text10">Schedule</span>
+                <span class="home-text11">Figure out when to do stuff</span>
+              </div>
+              <div class="home-publish card">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='pastedimage-mimg-200h.png')}}"
+                  class="home-icon03"
+                />
+                <span class="home-text12">You're in charge</span>
+                <span class="home-text13">With our site, you come first</span>
+              </div>
+            </div>
+            <div class="home-container2">
+              <div class="card home-analyze">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='pastedimage-l6p-200h.png')}}"
+                  class="home-icon04"
+                />
+                <span class="home-text14">Analyze</span>
+                <span class="home-text15">See when you did stuff</span>
+              </div>
+              <div class="card">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='pastedimage-vyi5-200h.png')}}"
+                  class="home-icon05"
+                />
+                <span class="home-text16">Get Rewarded</span>
+                <span class="home-text17">
+                  With us, you'll feel that dopamine hit every time you hit
+                  done!
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home-quote-container">
+          <div class="home-quote">
+            <span class="home-message">
+              “ToDoEr truly helped me plan my day, something I'd thought
+              impossible!”
+            </span>
+            <div class="home-author">
+              <span class="home-quote1">
+                -Gurpret Singh, Senior developer&nbsp;
+              </span>
+            </div>
+          </div>
+        </section>
+        <section class="home-banners">
+          <div class="home-banner-manage">
+            <div class="home-container3">
+              <div class="home-left"></div>
+              <span class="home-text18 title">
+                Manage all your time in just one place.
+              </span>
+              <div class="home-image-container">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='pastedimage-wvmq%201-1200w.png')}}"
+                  class="home-cards-image"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="home-banner">
+            <div class="home-container4">
+              <div class="home-left1">
+                <span class="home-text19">Improve Scheduling</span>
+                <h2 class="home-text20 title">
+                  Powerful scheduler that saves you time
+                </h2>
+                <span class="home-text21">
+                  Do more of what you want, not more of what your boss, wife, mom or event
+                  dog wants you to do. Ok maybe not your dog.
+                </span>
+                <div class="home-get-started1 template-button">
+                  <span class="home-text22" onclick="window.location='/register'">Get started</span>
+                </div>
+              </div>
+              <div class="home-image-container1">
+                <img
+                  alt="pastedImage"
+                  src="{{url_for('static', filename='83d913a38a75e38d7cef4fea757ed7ed-1200w.png')}}"
+                  class="home-cards-image1"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home-action-bar">
+          <div class="home-action">
+            <div class="home-heading">
+              <span class="home-text23 title">Get your time back</span>
+              <span class="home-text24">
+                GET IT ALLLLLLLLL.
+              </span>
+              <div class="home-get-started2 template-button">
+                <span class="home-text25">
+                  <span onclick="window.location='/register'">Start free</span>
+                  <br />
+                </span>
+              </div>
+            </div>
+            <div class="home-images">
+              <img
+                alt="image"
+                src="{{url_for('static', filename='e564eaa3c4fab71792794d666a281742-1200w.png')}}"
+                class="home-image"
+              />
+            </div>
+          </div>
+        </section>
+        <section class="home-faq">
+          <div class="home-heading1">
+            <span class="home-text28 title">Frequently asked questions</span>
+            <span class="home-text29">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. vv
+            </span>
+          </div>
+          <div class="home-accordion">
+            <div data-faq="closed" class="accordionContainer">
+              <div class="home-header1">
+                <span class="home-text30">What is this site?</span>
+                <svg viewBox="0 0 1024 1024" class="accordionIcon">
+                  <path
+                    d="M316 366l196 196 196-196 60 60-256 256-256-256z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="accordionContent">
+                <span class="home-text31">
+                  Its a to do list site that'll save you time
+                </span>
+              </div>
+            </div>
+            <div class="accordionContainer">
+              <div class="home-header2">
+                <span class="home-text32">Is it free?</span>
+                <svg viewBox="0 0 1024 1024" class="accordionIcon">
+                  <path
+                    d="M316 366l196 196 196-196 60 60-256 256-256-256z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="accordionContent">
+                <span class="home-text33">
+                  100% Free, Powered via TechCodes agreement with the dev.
+                </span>
+              </div>
+            </div>
+            <div data-faq="closed" class="accordionContainer">
+              <div class="home-header3">
+                <span class="home-text34">Will. it really save me time?</span>
+                <svg viewBox="0 0 1024 1024" class="accordionIcon">
+                  <path
+                    d="M316 366l196 196 196-196 60 60-256 256-256-256z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="accordionContent">
+                <span class="home-text35">As long as you use it, YES!</span>
+              </div>
+            </div>
+            <div data-faq="closed" class="accordionContainer">
+              <div class="home-header4">
+                <span class="home-text36">Why Isn't there google login?</span>
+                <svg viewBox="0 0 1024 1024" class="accordionIcon">
+                  <path
+                    d="M316 366l196 196 196-196 60 60-256 256-256-256z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="accordionContent">
+                <span class="home-text37">
+                  Its because we aren't a real site, so integration isn't
+                  necessary
+                </span>
+              </div>
+            </div>
+            <div data-faq="closed" class="accordionContainer">
+              <div class="home-header5">
+                <span class="home-text38">Is this a real website?</span>
+                <svg viewBox="0 0 1024 1024" class="accordionIcon">
+                  <path
+                    d="M316 366l196 196 196-196 60 60-256 256-256-256z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="accordionContent">
+                <span class="home-text39">
+                  Real in the sense it works, Yes. Real in the sense that this
+                  is an actual business? no.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <dangerous-html
+              html="<script>
+// Accordion - Code Embed
+
+const accordionContainers = document.querySelectorAll('.accordionContainer'); // All accordion containers
+const accordionContents = document.querySelectorAll('.accordionContent'); // All accordion content
+const accordionIcons = document.querySelectorAll('.accordionIcon'); // All accordion icons
+
+accordionContents.forEach((accordionContent) => {
+    accordionContent.style.display = 'none'; //Hides all accordion contents
+});
+
+accordionContainers.forEach((accordionContainer, index) => {
+    accordionContainer.addEventListener('click', () => {
+        accordionContents.forEach((accordionContent) => {
+            accordionContent.style.display = 'none'; //Hides all accordion contents
+        });
+
+        accordionIcons.forEach((accordionIcon) => {
+            accordionIcon.style.transform = 'rotate(0deg)'; // Resets all icon transforms to 0deg (default)
+        });
+
+        if (accordionContainer.classList.contains('accordion-open')) { // Checks if this container has class 'accordion-open'
+            accordionContainer.classList.remove('accordion-open'); // Removes class 'accordion-open'
+        } else {
+            accordionContainers.forEach((accordionContainer) => {
+                accordionContainer.classList.remove('accordion-open'); // Removes class 'accordion-open' from all containers
+            });
+
+            accordionContainer.classList.add('accordion-open'); // Adds class 'accordion-open' to this container
+            accordionContents[index].style.display = 'flex'; // Shows accordion content
+            accordionIcons[index].style.transform = 'rotate(180deg)'; // Rotates accordion icon 180deg
+        }
+    });
+});
+
+/*
+Here's what the above is doing:
+    1. Selects all accordion containers, contents, and icons
+    2. Hides all accordion contents
+    3. Adds an event listener to each accordion container
+    4. When an accordion container is clicked, it:
+        - Hides all accordion contents
+        - Resets all icon transforms to 0deg (default)
+        - Checks if this container has class 'accordion-open'
+            - If it does, it removes class 'accordion-open'
+            - If it doesn't, it:
+                - Removes class 'accordion-open' from all containers
+                - Adds class 'accordion-open' to this container
+                - Shows accordion content
+                - Rotates accordion icon 180deg
+*/
+</script>"
+            ></dangerous-html>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
